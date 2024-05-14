@@ -8,25 +8,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.infosys.Online.recruitment.Entity.Student;
-import com.infosys.Online.recruitment.Service.StudentService;
+import com.infosys.Online.recruitment.Entity.College;
+import com.infosys.Online.recruitment.Service.CollegeService;
 
 @RestController
-public class StudentController {
+public class CollegeController {
+
 	@Autowired
-	StudentService service;
+	CollegeService service;
 	
 	
-	@GetMapping("/student")
-	public List<Student> getAllStudents(){
+	@GetMapping("/college")
+	public List<College> getAllColleges(){
 		
-		return service.getAllStudents();
+		return service.getAllColleges();
 		
 	}
 	
 	
-	@PostMapping("/student")
-	public Student addStudent(@RequestBody Student student) {
-		return service.addStudent(student);
+	@PostMapping("/college")
+	public College addCollege(@RequestBody College college) {
+		return service.addCollege(college);
 	}
 }
