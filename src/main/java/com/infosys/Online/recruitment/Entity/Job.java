@@ -1,12 +1,15 @@
 package com.infosys.Online.recruitment.Entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Job {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int jobID;
 	
 	private String jobName;
@@ -14,6 +17,9 @@ public class Job {
 	private String jobType;
 	private String jobDescription;
 	private String jobVaccancy;
+	
+//	@OneToMany(mappedBy ="job")
+//	private Company company; 
 	
 	public Job() {
 		super();
@@ -78,12 +84,14 @@ public class Job {
 		this.jobVaccancy = jobVaccancy;
 	}
 
+	
+
 	@Override
 	public String toString() {
 		return "Job [jobID=" + jobID + ", jobName=" + jobName + ", salary=" + salary + ", jobType=" + jobType
-				+ ", jobDescription=" + jobDescription + ", jobVaccancy=" + jobVaccancy + "]";
+				+ ", jobDescription=" + jobDescription + ", jobVaccancy=" + jobVaccancy + ",]";
 	}
-	
+
 	
 	
 

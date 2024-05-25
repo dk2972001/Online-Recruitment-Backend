@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.infosys.Online.recruitment.Entity.Role;
 import com.infosys.Online.recruitment.Entity.User;
+import com.infosys.Online.recruitment.Repositary.RoleRepositary;
 import com.infosys.Online.recruitment.Repositary.UserRepositary;
 
 @Service
@@ -15,6 +17,9 @@ public class UserService implements UserInterface {
 	@Autowired
 	UserRepositary repository;
 	
+	  @Autowired
+	 RoleRepositary roleRepository;
+	
 	@Override
 	public List<User> getAllUsers() {
 		
@@ -22,10 +27,21 @@ public class UserService implements UserInterface {
 	}
 
 	@Override
-	public User addUser(User user) {
-		
-		return repository.save(user);
-	}
+	
+	 public User addUser(User user) {
+        // Ensure that the Role associated with the User is saved before saving the User
+        Role role = user.getRole();
+        if (role != null && role.getRoleId() == 0) {
+            // Save the Role if it hasn't been saved yet
+            roleRepository.save(role);
+        }
+        return repository.save(user);
+    }
+	
+//	public User addUser(User user) {
+//		
+//		return repository.save(user);
+//	}
 
 	@Override
 	public Optional<User> getUserId(Integer userId){
@@ -43,7 +59,7 @@ public class UserService implements UserInterface {
 			User existingUser = existingUserOptional.get();
 			
 			existingUser.setAddress(user.getAddress());
-			existingUser.setPassword(user.getPassword());
+			existingUser.setpassword(user.getpassword());
 			
 			return repository.save(existingUser);
 		}

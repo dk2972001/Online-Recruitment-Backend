@@ -1,6 +1,11 @@
 package com.infosys.Online.recruitment.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 
@@ -8,17 +13,24 @@ import jakarta.persistence.OneToOne;
 public class Role {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int roleId;
 	private String roleTitle;
 	private String roleDesc;
 	
-	@OneToOne(mappedBy = "role" )
+	@OneToOne(mappedBy = "role", cascade = CascadeType.PERSIST )
+	@JsonBackReference
 	private User user;
 
 	public Role() { 	
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Role(String roleTitle) {
+        super();
+        this.roleTitle = roleTitle;
+    }
 
 	public Role(int roleId, String roleTitle, String roleDesc, User user) {
 		super();

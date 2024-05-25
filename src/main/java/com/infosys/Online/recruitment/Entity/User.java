@@ -2,7 +2,13 @@ package com.infosys.Online.recruitment.Entity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 //import jakarta.persistence.GeneratedValue;
 //import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,15 +19,17 @@ import jakarta.persistence.OneToOne;
 public class User {
 	
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int userId;
 	
-	@OneToOne
+	
+	@OneToOne(cascade =CascadeType.MERGE,fetch = FetchType.EAGER)
 	@JoinColumn(name="roleId")
+	@JsonManagedReference
 	private Role role;
-	private String fullName;
+	
+	private String userName;
 	private String password;
-	private String ConfirmPassword;
 	private Date dob;
 	private String phoneNumber;
 	private String email;
@@ -34,14 +42,13 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(int userId, Role role, String fullName, String password, String confirmPassword, Date dob,
+	public User(int userId, Role role, String userName, String password, Date dob,
 			String phoneNumber, String email, String address, String gender, String nationality) {
 		super();
 		this.userId = userId;
 		this.role = role;
-		this.fullName = fullName;
+		this.userName = userName;
 		this.password = password;
-		ConfirmPassword = confirmPassword;
 		this.dob = dob;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
@@ -66,28 +73,20 @@ public class User {
 		this.role = role;
 	}
 
-	public String getFullName() {
-		return fullName;
+	public String getuserName() {
+		return userName;
 	}
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
+	public void setuserName(String userName) {
+		this.userName = userName;
 	}
 
-	public String getPassword() {
+	public String getpassword() {
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public void setpassword(String password) {
 		this.password = password;
-	}
-
-	public String getConfirmPassword() {
-		return ConfirmPassword;
-	}
-
-	public void setConfirmPassword(String confirmPassword) {
-		ConfirmPassword = confirmPassword;
 	}
 
 	public Date getDob() {
@@ -140,8 +139,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", role=" + role + ", fullName=" + fullName + ", password=" + password
-				+ ", ConfirmPassword=" + ConfirmPassword + ", dob=" + dob + ", phoneNumber=" + phoneNumber + ", email="
+		return "User [userId=" + userId + ", role=" + role + ", userName=" + userName + ", password=" + password
+				+ ", dob=" + dob + ", phoneNumber=" + phoneNumber + ", email="
 				+ email + ", address=" + address + ", gender=" + gender + ", nationality=" + nationality + "]";
 	}
 	
