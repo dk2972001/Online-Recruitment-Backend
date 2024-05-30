@@ -9,30 +9,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.infosys.Online.recruitment.Entity.Student;
-import com.infosys.Online.recruitment.Service.StudentService;
+import com.infosys.Online.recruitment.Entity.JobAvailability;
+import com.infosys.Online.recruitment.Service.JobAvailabilityService;
+
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-<<<<<<< HEAD
-
-=======
->>>>>>> ee8557d2d0eeb9b76ccd3fac3a768cb81b3c131c
-public class StudentController {
+public class JobAvailabilityController {
 	@Autowired
-	StudentService service;
+	JobAvailabilityService service;
 	
 	
-	@GetMapping("/student")
-	public List<Student> getAllStudents(){
+	@GetMapping("/jobavailability")
+	public List<JobAvailability> getAllJobAvailability(){
 		
-		return service.getAllStudents();
+		return service.getAllJobAvailability();
 		
 	}
 	
 	
-	@PostMapping("/student")
-	public Student addStudent(@RequestBody Student student) {
-		return service.addStudent(student);
+	@PostMapping("/jobavailability")
+	public JobAvailability addJobAvailability(@RequestBody JobAvailability jobavailability) {
+		return service.addJobAvailability(jobavailability);
 	}
 }
+
+
