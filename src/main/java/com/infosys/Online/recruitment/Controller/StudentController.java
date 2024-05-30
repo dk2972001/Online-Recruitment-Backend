@@ -14,10 +14,6 @@ import com.infosys.Online.recruitment.Service.StudentService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-<<<<<<< HEAD
-
-=======
->>>>>>> ee8557d2d0eeb9b76ccd3fac3a768cb81b3c131c
 public class StudentController {
 	@Autowired
 	StudentService service;
