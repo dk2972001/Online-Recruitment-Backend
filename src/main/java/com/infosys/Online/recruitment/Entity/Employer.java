@@ -12,6 +12,7 @@ public class Employer {
 	private String employerAddress;
 	private String employerMobile;
 	private String employerEmail;
+	
 	public Employer() {
 		super();
 		// TODO Auto-generated constructor stub

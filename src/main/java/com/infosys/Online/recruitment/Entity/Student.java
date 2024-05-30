@@ -1,17 +1,28 @@
 package com.infosys.Online.recruitment.Entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
 public class Student {
+
 	@Id
+	@JsonProperty("studentId")
 	private int studentId;
+	
+	   @JsonProperty("studentName")
 	private String studentName;
+	   @JsonProperty("studentMobile")
 	private String studentMobile;
+	   @JsonProperty("studentEmail")
 	private String studentEmail;
+	   @JsonProperty("studentAddress")
 	private String studentAddress;
+	   @JsonProperty("studentGender")
 	private String studentGender;
+	   
 	public Student() {
 		super();
 		// TODO Auto-generated constructor stub
