@@ -1,135 +1,170 @@
 package com.infosys.Online.recruitment.Entity;
 
+import java.util.Arrays;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class JobAvailability {
 	@Id
-	private int JobAvailabilityId;
-	private String JobAvailabilityName;
-	private String JobAvailabilityMobile;
-	private String JobAvailabilityEmail;
-	private String JobAvailabilityYOP;
-	private String JobAvailabilityPercentage;
-	private String JobAvailabilityLanguage;
-	private String JobAvailabilityKeySkills;
-	private String JobAvailabilityProject;
-	private String JobAvailabilityResume;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+	@OneToOne(cascade =CascadeType.MERGE,fetch = FetchType.EAGER)
+	@JoinColumn(name="userId")
+	@JsonManagedReference
+	private User user;
 	
+    private String name;
+    private String email;
+    private String phoneno;
+    private String yearofpassing;
+    private Double percentage;
+    private String language;
+    private String skills;
+    private String project;
+
+    @Lob
+    private byte[] resumeData;
+
+    private String resumeFilename;
+    private String resumeFileType;
+    
 	public JobAvailability() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public JobAvailability(int jobAvailabilityId, String jobAvailabilityName, String jobAvailabilityMobile,
-			String jobAvailabilityEmail, String jobAvailabilityYOP, String jobAvailabilityPercentage,
-			String jobAvailabilityLanguage, String jobAvailabilityKeySkills, String jobAvailabilityProject,
-			String jobAvailabilityResume) {
+	public JobAvailability(Integer id, String name, String email, String phoneno, String yearofpassing, Double percentage,
+			String language, String skills, String project, byte[] resumeData, String resumeFilename,
+			String resumeFileType) {
 		super();
-		JobAvailabilityId = jobAvailabilityId;
-		JobAvailabilityName = jobAvailabilityName;
-		JobAvailabilityMobile = jobAvailabilityMobile;
-		JobAvailabilityEmail = jobAvailabilityEmail;
-		JobAvailabilityYOP = jobAvailabilityYOP;
-		JobAvailabilityPercentage = jobAvailabilityPercentage;
-		JobAvailabilityLanguage = jobAvailabilityLanguage;
-		JobAvailabilityKeySkills = jobAvailabilityKeySkills;
-		JobAvailabilityProject = jobAvailabilityProject;
-		JobAvailabilityResume = jobAvailabilityResume;
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.phoneno = phoneno;
+		this.yearofpassing = yearofpassing;
+		this.percentage = percentage;
+		this.language = language;
+		this.skills = skills;
+		this.project = project;
+		this.resumeData = resumeData;
+		this.resumeFilename = resumeFilename;
+		this.resumeFileType = resumeFileType;
 	}
 
-	public int getJobAvailabilityId() {
-		return JobAvailabilityId;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setJobAvailabilityId(int jobAvailabilityId) {
-		JobAvailabilityId = jobAvailabilityId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public String getJobAvailabilityName() {
-		return JobAvailabilityName;
+	public String getName() {
+		return name;
 	}
 
-	public void setJobAvailabilityName(String jobAvailabilityName) {
-		JobAvailabilityName = jobAvailabilityName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getJobAvailabilityMobile() {
-		return JobAvailabilityMobile;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setJobAvailabilityMobile(String jobAvailabilityMobile) {
-		JobAvailabilityMobile = jobAvailabilityMobile;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getJobAvailabilityEmail() {
-		return JobAvailabilityEmail;
+	public String getPhoneno() {
+		return phoneno;
 	}
 
-	public void setJobAvailabilityEmail(String jobAvailabilityEmail) {
-		JobAvailabilityEmail = jobAvailabilityEmail;
+	public void setPhoneno(String phoneno) {
+		this.phoneno = phoneno;
 	}
 
-	public String getJobAvailabilityYOP() {
-		return JobAvailabilityYOP;
+	public String getYearofpassing() {
+		return yearofpassing;
 	}
 
-	public void setJobAvailabilityYOP(String jobAvailabilityYOP) {
-		JobAvailabilityYOP = jobAvailabilityYOP;
+	public void setYearofpassing(String yearofpassing) {
+		this.yearofpassing = yearofpassing;
 	}
 
-	public String getJobAvailabilityPercentage() {
-		return JobAvailabilityPercentage;
+	public Double getPercentage() {
+		return percentage;
 	}
 
-	public void setJobAvailabilityPercentage(String jobAvailabilityPercentage) {
-		JobAvailabilityPercentage = jobAvailabilityPercentage;
+	public void setPercentage(Double percentage) {
+		this.percentage = percentage;
 	}
 
-	public String getJobAvailabilityLanguage() {
-		return JobAvailabilityLanguage;
+	public String getLanguage() {
+		return language;
 	}
 
-	public void setJobAvailabilityLanguage(String jobAvailabilityLanguage) {
-		JobAvailabilityLanguage = jobAvailabilityLanguage;
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 
-	public String getJobAvailabilityKeySkills() {
-		return JobAvailabilityKeySkills;
+	public String getSkills() {
+		return skills;
 	}
 
-	public void setJobAvailabilityKeySkills(String jobAvailabilityKeySkills) {
-		JobAvailabilityKeySkills = jobAvailabilityKeySkills;
+	public void setSkills(String skills) {
+		this.skills = skills;
 	}
 
-	public String getJobAvailabilityProject() {
-		return JobAvailabilityProject;
+	public String getProject() {
+		return project;
 	}
 
-	public void setJobAvailabilityProject(String jobAvailabilityProject) {
-		JobAvailabilityProject = jobAvailabilityProject;
+	public void setProject(String project) {
+		this.project = project;
 	}
 
-	public String getJobAvailabilityResume() {
-		return JobAvailabilityResume;
+	public byte[] getResumeData() {
+		return resumeData;
 	}
 
-	public void setJobAvailabilityResume(String jobAvailabilityResume) {
-		JobAvailabilityResume = jobAvailabilityResume;
+	public void setResumeData(byte[] resumeData) {
+		this.resumeData = resumeData;
+	}
+
+	public String getResumeFilename() {
+		return resumeFilename;
+	}
+
+	public void setResumeFilename(String resumeFilename) {
+		this.resumeFilename = resumeFilename;
+	}
+
+	public String getResumeFileType() {
+		return resumeFileType;
+	}
+
+	public void setResumeFileType(String resumeFileType) {
+		this.resumeFileType = resumeFileType;
 	}
 
 	@Override
 	public String toString() {
-		return "JobAvailability [JobAvailabilityId=" + JobAvailabilityId + ", JobAvailabilityName="
-				+ JobAvailabilityName + ", JobAvailabilityMobile=" + JobAvailabilityMobile + ", JobAvailabilityEmail="
-				+ JobAvailabilityEmail + ", JobAvailabilityYOP=" + JobAvailabilityYOP + ", JobAvailabilityPercentage="
-				+ JobAvailabilityPercentage + ", JobAvailabilityLanguage=" + JobAvailabilityLanguage
-				+ ", JobAvailabilityKeySkills=" + JobAvailabilityKeySkills + ", JobAvailabilityProject="
-				+ JobAvailabilityProject + ", JobAvailabilityResume=" + JobAvailabilityResume + "]";
+		return "JobAvailability [id=" + id + ", name=" + name + ", email=" + email + ", phoneno=" + phoneno
+				+ ", yearofpassing=" + yearofpassing + ", percentage=" + percentage + ", language=" + language
+				+ ", skills=" + skills + ", project=" + project + ", resumeData=" + Arrays.toString(resumeData)
+				+ ", resumeFilename=" + resumeFilename + ", resumeFileType=" + resumeFileType + "]";
 	}
 	
-	
-	
-
 }

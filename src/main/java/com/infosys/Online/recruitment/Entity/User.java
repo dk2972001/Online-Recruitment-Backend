@@ -2,6 +2,7 @@ package com.infosys.Online.recruitment.Entity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -28,6 +29,10 @@ public class User {
 	@JsonManagedReference
 	private Role role;
 	
+	@OneToOne(mappedBy = "user", cascade = CascadeType.PERSIST )
+	@JsonBackReference
+	private JobAvailability jobAvailability;
+	
 	private String userName;
 	private String password;
 	private Date dob;
@@ -36,6 +41,8 @@ public class User {
 	private String address;
 	private String gender;
 	private String nationality;
+	
+
 	
 	public User() {
 		super();
