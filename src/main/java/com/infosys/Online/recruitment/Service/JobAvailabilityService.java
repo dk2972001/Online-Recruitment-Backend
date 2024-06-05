@@ -20,6 +20,11 @@ public class JobAvailabilityService implements JobAvailabilityInterface {
 		return repository.findAll();
 	}
 
+	public JobAvailability getJobAvailabilityById(Integer id) {
+        return repository.findById(id).orElse(null);
+    }
+
+	
 	@Override
 	public JobAvailability saveJobAvailability(JobAvailability jobavailability,  MultipartFile file) throws IOException {
 		

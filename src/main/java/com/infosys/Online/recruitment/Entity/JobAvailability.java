@@ -65,11 +65,11 @@ public class JobAvailability {
 		this.resumeFileType = resumeFileType;
 	}
 
-	public Integer getjobApplicationId() {
+	public Integer getId() {
 		return jobApplicationid;
 	}
 
-	public void setjobApplicationId(Integer jobApplicationid) {
+	public void setId(Integer jobApplicationid) {
 		this.jobApplicationid = jobApplicationid;
 	}
 
