@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.infosys.Online.recruitment.Entity.JobAvailability;
 import com.infosys.Online.recruitment.Service.JobAvailabilityService;
+import com.infosys.Online.recruitment.Service.NotificationService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -22,6 +23,9 @@ public class JobAvailabilityController {
     
     @Autowired
     JobAvailabilityService service;
+    
+    @Autowired
+    private NotificationService notificationService;
     
     @GetMapping("/jobavailability")
     public List<JobAvailability> getAllJobAvailability(){
@@ -53,6 +57,7 @@ public class JobAvailabilityController {
         try {
             // Save the job application along with the resume file
             JobAvailability savedApplication = service.saveJobAvailability(jobAvailability, resume);
+            notificationService.createNotification("New job application from " + name, savedApplication.getjobApplicationId());
             return new ResponseEntity<>(savedApplication, HttpStatus.CREATED);
         } catch (IOException e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

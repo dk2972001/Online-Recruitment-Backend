@@ -5,6 +5,7 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -18,7 +19,7 @@ import jakarta.persistence.OneToOne;
 public class JobAvailability {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Integer jobApplicationid;
 
 	@OneToOne(cascade =CascadeType.MERGE,fetch = FetchType.EAGER)
 	@JoinColumn(name="userId")
@@ -35,6 +36,7 @@ public class JobAvailability {
     private String project;
 
     @Lob
+    @Column(name = "resume_data", columnDefinition="MEDIUMBLOB")
     private byte[] resumeData;
 
     private String resumeFilename;
@@ -45,11 +47,11 @@ public class JobAvailability {
 		// TODO Auto-generated constructor stub
 	}
 
-	public JobAvailability(Integer id, String name, String email, String phoneno, String yearofpassing, Double percentage,
+	public JobAvailability(Integer jobApplicationid, String name, String email, String phoneno, String yearofpassing, Double percentage,
 			String language, String skills, String project, byte[] resumeData, String resumeFilename,
 			String resumeFileType) {
 		super();
-		this.id = id;
+		this.jobApplicationid = jobApplicationid;
 		this.name = name;
 		this.email = email;
 		this.phoneno = phoneno;
@@ -63,12 +65,12 @@ public class JobAvailability {
 		this.resumeFileType = resumeFileType;
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getjobApplicationId() {
+		return jobApplicationid;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setjobApplicationId(Integer jobApplicationid) {
+		this.jobApplicationid = jobApplicationid;
 	}
 
 	public String getName() {
@@ -161,7 +163,7 @@ public class JobAvailability {
 
 	@Override
 	public String toString() {
-		return "JobAvailability [id=" + id + ", name=" + name + ", email=" + email + ", phoneno=" + phoneno
+		return "JobAvailability [jobApplicationid=" + jobApplicationid + ", name=" + name + ", email=" + email + ", phoneno=" + phoneno
 				+ ", yearofpassing=" + yearofpassing + ", percentage=" + percentage + ", language=" + language
 				+ ", skills=" + skills + ", project=" + project + ", resumeData=" + Arrays.toString(resumeData)
 				+ ", resumeFilename=" + resumeFilename + ", resumeFileType=" + resumeFileType + "]";
