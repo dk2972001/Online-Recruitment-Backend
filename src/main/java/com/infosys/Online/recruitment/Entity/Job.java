@@ -18,12 +18,19 @@ public class Job {
 	private String jobDescription;
 	private String jobVaccancy;
 	
+	private int employerId;
+	
+public Job(int employerId) {
+		super();
+		this.employerId = employerId;
+	}
+
 //	@OneToMany(mappedBy ="job")
 //	private Company company; 
 	
 	public Job() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Job(int jobID, String jobName, String salary, String jobType, String jobDescription, String jobVaccancy) {
@@ -38,6 +45,14 @@ public class Job {
 
 	public int getJobID() {
 		return jobID;
+	}
+
+	public int getEmployerId() {
+		return employerId;
+	}
+
+	public void setEmployerId(int employerId) {
+		this.employerId = employerId;
 	}
 
 	public void setJobID(int jobID) {
@@ -89,7 +104,8 @@ public class Job {
 	@Override
 	public String toString() {
 		return "Job [jobID=" + jobID + ", jobName=" + jobName + ", salary=" + salary + ", jobType=" + jobType
-				+ ", jobDescription=" + jobDescription + ", jobVaccancy=" + jobVaccancy + ",]";
+				+ ", jobDescription=" + jobDescription + ", jobVaccancy=" + jobVaccancy + ", employerId=" + employerId
+				+ "]";
 	}
 
 	

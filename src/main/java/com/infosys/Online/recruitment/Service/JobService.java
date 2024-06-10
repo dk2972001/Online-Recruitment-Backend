@@ -13,7 +13,7 @@ import com.infosys.Online.recruitment.Repositary.JobRepositary;
 public class JobService implements JobInterface {
 	
 	@Autowired
-	JobRepositary repositary;
+	private JobRepositary repositary;
 	
 	@Override
 	public List<Job> getAllJobs(){
@@ -50,6 +50,11 @@ public class JobService implements JobInterface {
 		
 		     }
 	}
+	
+	
+	 public List<Job> findByEmployerId(int employerId) {
+	        return repositary.findByEmployerId(employerId);
+	    }
 	
 	@Override
 	public void deleteJob(Integer jobId) {

@@ -34,10 +34,17 @@ public class JobController {
 		
 	}
 	
+	 @GetMapping("/employer/{employerId}")
+	    public List<Job> getJobsByEmployer(@PathVariable int employerId) {
+	        return service.findByEmployerId(employerId);
+	    }
+	
 	@PostMapping("/jobs")
 	public Job addJob(@RequestBody Job job) {
 		return service.addJob(job);
 	}
+	
+	
 	
 	@PutMapping("/jobs/{jobId}")
 	public Job updateJob(@PathVariable Integer jobId, @RequestBody Job job) throws Exception{
